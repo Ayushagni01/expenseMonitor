@@ -1,0 +1,74 @@
+﻿To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.4/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+> Task :app:checkKotlinGradlePluginConfigurationErrors
+> Task :app:preBuild UP-TO-DATE
+> Task :app:preDebugBuild UP-TO-DATE
+> Task :app:dataBindingMergeDependencyArtifactsDebug UP-TO-DATE
+> Task :app:generateDebugResValues UP-TO-DATE
+> Task :app:generateDebugResources UP-TO-DATE
+> Task :app:mergeDebugResources UP-TO-DATE
+> Task :app:packageDebugResources UP-TO-DATE
+> Task :app:parseDebugLocalResources UP-TO-DATE
+> Task :app:dataBindingGenBaseClassesDebug UP-TO-DATE
+> Task :app:checkDebugAarMetadata UP-TO-DATE
+> Task :app:mapDebugSourceSetPaths UP-TO-DATE
+> Task :app:createDebugCompatibleScreenManifests UP-TO-DATE
+> Task :app:extractDeepLinksDebug UP-TO-DATE
+> Task :app:processDebugMainManifest UP-TO-DATE
+> Task :app:processDebugManifest UP-TO-DATE
+> Task :app:processDebugManifestForPackage UP-TO-DATE
+> Task :app:processDebugResources UP-TO-DATE
+> Task :app:kspDebugKotlin UP-TO-DATE
+
+> Task :app:compileDebugKotlin
+cmd : e: file:///C:/Users/ayush/Desktop/expense-m
+anager/app/src/main/java/com/ayush/expensemanager
+/ui/expense/ExpenseAdapter.kt:23:21 Unresolved 
+reference: tvNotes
+At line:1 char:45
++ ... k-17.0.12"; cmd /c gradlew.bat 
+:app:compileDebugKotlin --no-daemon 2> ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (e:  
+   file:///C:/U...erence: tvNotes:String) [], R  
+  emoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+e: file:///C:/Users/ayush/Desktop/expense-manager
+/app/src/main/java/com/ayush/expensemanager/ui/ex
+pense/ExpenseAdapter.kt:23:29 Variable expected
+e: file:///C:/Users/ayush/Desktop/expense-manager
+/app/src/main/java/com/ayush/expensemanager/ui/ex
+pense/ExpenseAdapter.kt:24:21 Unresolved 
+reference: tvNotes
+e: file:///C:/Users/ayush/Desktop/expense-manager
+/app/src/main/java/com/ayush/expensemanager/ui/ex
+pense/ExpenseAdapter.kt:24:29 Variable expected
+e: file:///C:/Users/ayush/Desktop/expense-manager
+/app/src/main/java/com/ayush/expensemanager/ui/ex
+pense/ExpenseAdapter.kt:25:21 Unresolved 
+reference: btnDelete
+
+> Task :app:compileDebugKotlin FAILED
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task 
+':app:compileDebugKotlin'.
+> A failure occurred while executing org.jetbrain
+s.kotlin.compilerRunner.GradleCompilerRunnerWithW
+orkers$GradleKotlinCompilerWorkAction
+   > Compilation error. See log for more details
+
+* Try:
+> Run with --stacktrace option to get the stack 
+trace.
+> Run with --info or --debug option to get more 
+log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 28s
+17 actionable tasks: 2 executed, 15 up-to-date

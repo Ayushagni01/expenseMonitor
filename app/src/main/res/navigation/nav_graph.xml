@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/dashboardFragment">
+
+    <fragment
+        android:id="@+id/dashboardFragment"
+        android:name="com.ayush.expensemanager.ui.dashboard.DashboardFragment"
+        android:label="Dashboard">
+        <action
+            android:id="@+id/action_dashboard_to_setSalary"
+            app:destination="@id/setSalaryFragment" />
+        <action
+            android:id="@+id/action_dashboard_to_addExpense"
+            app:destination="@id/addExpenseFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/addExpenseFragment"
+        android:name="com.ayush.expensemanager.ui.expense.AddExpenseFragment"
+        android:label="Add Expense" />
+
+    <fragment
+        android:id="@+id/expenseHistoryFragment"
+        android:name="com.ayush.expensemanager.ui.expense.ExpenseHistoryFragment"
+        android:label="History">
+        <action
+            android:id="@+id/action_history_to_addExpense"
+            app:destination="@id/addExpenseFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/categoryFragment"
+        android:name="com.ayush.expensemanager.ui.category.CategoryFragment"
+        android:label="Categories" />
+
+    <fragment
+        android:id="@+id/setSalaryFragment"
+        android:name="com.ayush.expensemanager.ui.salary.SetSalaryFragment"
+        android:label="Set Salary" />
+
+    <fragment
+        android:id="@+id/reportFragment"
+        android:name="com.ayush.expensemanager.ui.report.ReportFragment"
+        android:label="Reports" />
+
+    <fragment
+        android:id="@+id/insightsFragment"
+        android:name="com.ayush.expensemanager.ui.insights.InsightsFragment"
+        android:label="Insights" />
+
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.ayush.expensemanager.ui.settings.SettingsFragment"
+        android:label="Settings" />
+
+</navigation>

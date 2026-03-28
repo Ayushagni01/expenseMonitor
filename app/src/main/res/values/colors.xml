@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Material 3 Tonal Palette -->
+    <color name="colorPrimary">#0060A9</color>
+    <color name="colorOnPrimary">#FFFFFF</color>
+    <color name="colorPrimaryContainer">#D3E4FF</color>
+    <color name="colorOnPrimaryContainer">#001C38</color>
+
+    <color name="colorSecondary">#545F71</color>
+    <color name="colorOnSecondary">#FFFFFF</color>
+    <color name="colorSecondaryContainer">#D8E3F8</color>
+    <color name="colorOnSecondaryContainer">#111C2B</color>
+
+    <color name="colorTertiary">#6D5976</color>
+    <color name="colorOnTertiary">#FFFFFF</color>
+    <color name="colorTertiaryContainer">#F6D9F9</color>
+    <color name="onTertiaryContainer">#26172E</color>
+
+    <color name="colorError">#BA1A1A</color>
+    <color name="colorOnError">#FFFFFF</color>
+    <color name="colorErrorContainer">#FFDAD6</color>
+    <color name="colorOnErrorContainer">#410002</color>
+
+    <color name="colorBackground">#F8F9FF</color>
+    <color name="colorOnBackground">#191C20</color>
+    <color name="colorSurface">#F8F9FF</color>
+    <color name="colorOnSurface">#191C20</color>
+    <color name="colorSurfaceVariant">#E1E2EC</color>
+    <color name="colorOnSurfaceVariant">#44474E</color>
+    <color name="colorOutline">#74777F</color>
+
+    <!-- Custom Semantic Colors (M3 Tones) -->
+    <color name="colorSuccess">#388E3C</color>
+    <color name="colorWarning">#FBC02D</color>
+    <color name="colorIncome">#006A60</color>
+    <color name="colorExpense">#B3261E</color>
+    <color name="colorBalance">#0060A9</color>
+
+    <!-- Chart Colors -->
+    <color name="chart1">#0060A9</color>
+    <color name="chart2">#6D5976</color>
+    <color name="chart3">#545F71</color>
+    <color name="chart4">#388E3C</color>
+    <color name="chart5">#FBC02D</color>
+    <color name="chart6">#BA1A1A</color>
+    <color name="chart7">#006A60</color>
+    <color name="chart8">#44474E</color>
+</resources>
