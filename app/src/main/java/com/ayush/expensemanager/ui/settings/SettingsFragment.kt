@@ -19,6 +19,7 @@ import com.ayush.expensemanager.utils.DataBackupUtils
 import kotlinx.coroutines.launch
 import java.io.File
 import androidx.core.content.FileProvider
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
 import androidx.work.PeriodicWorkRequestBuilder
@@ -91,6 +92,10 @@ class SettingsFragment : Fragment() {
 
         binding.layoutBackupFolder.setOnClickListener {
             folderPickerLauncher.launch(null)
+        }
+
+        binding.layoutManageCategories.setOnClickListener {
+            findNavController().navigate(com.ayush.expensemanager.R.id.categoryFragment)
         }
 
         binding.btnSaveSettings.setOnClickListener {

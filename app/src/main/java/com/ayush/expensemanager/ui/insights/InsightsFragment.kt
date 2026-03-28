@@ -13,18 +13,25 @@ import com.ayush.expensemanager.R
 import com.ayush.expensemanager.databinding.FragmentInsightsBinding
 import com.ayush.expensemanager.utils.CurrencyFormatter
 import com.ayush.expensemanager.viewmodel.MainViewModel
+import com.ayush.expensemanager.utils.PdfReportGenerator
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.utils.ColorTemplate
 import kotlinx.coroutines.launch
 import java.util.*
+import android.content.Intent
+import android.widget.Toast
+import androidx.core.content.FileProvider
+import com.ayush.expensemanager.viewmodel.ReportViewModel
+
 
 class InsightsFragment : Fragment() {
 
     private var _binding: FragmentInsightsBinding? = null
     private val binding get() = _binding!!
     private val viewModel: MainViewModel by viewModels()
+    private val reportViewModel: ReportViewModel by viewModels()
 
     private var selectedMonth = Calendar.getInstance().get(Calendar.MONTH) + 1
     private var selectedYear = Calendar.getInstance().get(Calendar.YEAR)
@@ -51,7 +58,30 @@ class InsightsFragment : Fragment() {
             updateView()
         }
 
+        binding.btnGeneratePdf.setOnClickListener { generatePdf() }
+
         updateView()
+    }
+
+    private fun generatePdf() {
+        lifecycleScope.launch {
+            val data = reportViewModel.getReportData(selectedMonth, selectedYear)
+            val file = PdfReportGenerator.generateMonthlyReport(
+                requireContext(), selectedMonth, selectedYear,
+                data.salary, data.totalSpent, data.expenses, data.categoryTotals
+            )
+            if (file != null) {
+                Toast.makeText(requireContext(), "PDF saved to Downloads!", Toast.LENGTH_LONG).show()
+                val uri = FileProvider.getUriForFile(requireContext(), "${requireContext().packageName}.fileprovider", file)
+                val intent = Intent(Intent.ACTION_VIEW).apply {
+                    setDataAndType(uri, "application/pdf")
+                    addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                }
+                startActivity(Intent.createChooser(intent, "Open PDF"))
+            } else {
+                Toast.makeText(requireContext(), "Failed to generate PDF", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     private fun updateView() {
