@@ -66,15 +66,19 @@ class InsightsFragment : Fragment() {
     private fun generatePdf() {
         lifecycleScope.launch {
             val data = reportViewModel.getReportData(selectedMonth, selectedYear)
-            val file = PdfReportGenerator.generateMonthlyReport(
+            
+            val prefs = requireContext().getSharedPreferences("settings", android.content.Context.MODE_PRIVATE)
+            val pdfUriStr = prefs.getString("pdf_export_uri", null)
+
+            val finalUri = PdfReportGenerator.generateMonthlyReport(
                 requireContext(), selectedMonth, selectedYear,
-                data.salary, data.totalSpent, data.expenses, data.categoryTotals
+                data.salary, data.totalSpent, data.expenses, data.categoryTotals, "₹", pdfUriStr
             )
-            if (file != null) {
-                Toast.makeText(requireContext(), "PDF saved to Downloads!", Toast.LENGTH_LONG).show()
-                val uri = FileProvider.getUriForFile(requireContext(), "${requireContext().packageName}.fileprovider", file)
+            
+            if (finalUri != null) {
+                Toast.makeText(requireContext(), "PDF saved successfully!", Toast.LENGTH_LONG).show()
                 val intent = Intent(Intent.ACTION_VIEW).apply {
-                    setDataAndType(uri, "application/pdf")
+                    setDataAndType(finalUri, "application/pdf")
                     addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
                 }
                 startActivity(Intent.createChooser(intent, "Open PDF"))
