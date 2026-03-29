@@ -69,12 +69,11 @@ class AddExpenseFragment : Fragment() {
             val names = cats.map { it.name } + listOf("+ Add New Category")
             val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, names)
             binding.spinnerCategory.setAdapter(adapter)
-            binding.spinnerCategory.setOnItemClickListener { _, _, position, _ ->
-                if (position == cats.size) {
+            binding.spinnerCategory.setOnItemClickListener { parent, _, position, _ ->
+                val selectedName = parent.getItemAtPosition(position) as String
+                if (selectedName == "+ Add New Category") {
                     showAddCategoryDialog()
-                } else {
-                    selectedCategoryId = cats[position].id
-                    selectedCategoryName = cats[position].name
+                    binding.spinnerCategory.setText("")
                 }
             }
         }
@@ -115,15 +114,27 @@ class AddExpenseFragment : Fragment() {
             binding.etAmount.error = "Enter a valid amount"
             return
         }
-        if (selectedCategoryName.isBlank()) {
-            Toast.makeText(requireContext(), "Please select a category", Toast.LENGTH_SHORT).show()
+
+        val inputCategoryName = binding.spinnerCategory.text.toString().trim()
+        if (inputCategoryName.isBlank() || inputCategoryName == "+ Add New Category") {
+            binding.spinnerCategory.error = "Category required"
+            Toast.makeText(requireContext(), "Please select or type a category", Toast.LENGTH_SHORT).show()
             return
+        }
+
+        val matchedCategory = categories.find { it.name.equals(inputCategoryName, ignoreCase = true) }
+        val finalCategoryName = matchedCategory?.name ?: inputCategoryName
+        val finalCategoryId = matchedCategory?.id
+
+        if (matchedCategory == null) {
+            // Auto-add new category since user typed it directly
+            categoryViewModel.addCategory(finalCategoryName)
         }
 
         val expense = Expense(
             amount = amount,
-            categoryId = selectedCategoryId,
-            categoryName = selectedCategoryName,
+            categoryId = finalCategoryId,
+            categoryName = finalCategoryName,
             notes = binding.etNotes.text.toString().trim(),
             date = selectedDate,
             isRecurring = binding.cbRecurring.isChecked
