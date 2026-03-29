@@ -64,7 +64,7 @@ class DashboardFragment : Fragment() {
             findNavController().navigate(R.id.action_dashboard_to_setSalary)
         }
         binding.layoutSeeAll.setOnClickListener {
-            findNavController().navigate(R.id.expenseHistoryFragment)
+            requireActivity().findViewById<com.google.android.material.bottomnavigation.BottomNavigationView>(R.id.bottom_navigation)?.selectedItemId = R.id.expenseHistoryFragment
         }
     }
 
