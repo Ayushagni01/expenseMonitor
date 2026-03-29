@@ -94,10 +94,6 @@ class SettingsFragment : Fragment() {
             folderPickerLauncher.launch(null)
         }
 
-        binding.layoutManageCategories.setOnClickListener {
-            findNavController().navigate(com.ayush.expensemanager.R.id.categoryFragment)
-        }
-
         binding.btnSaveSettings.setOnClickListener {
             val currency = binding.etCurrency.text.toString().trim().ifBlank { "₹" }
             prefs.edit().putString("currency", currency).apply()

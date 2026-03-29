@@ -18,8 +18,8 @@
 
     <fragment
         android:id="@+id/addExpenseFragment"
-        android:name="com.ayush.expensemanager.ui.expense.AddExpenseFragment"
-        android:label="Add Expense" />
+        android:name="com.ayush.expensemanager.ui.expense.AddParentFragment"
+        android:label="Add Data" />
 
     <fragment
         android:id="@+id/expenseHistoryFragment"

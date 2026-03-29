@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">eXpense</string>
     <string name="dashboard">Dashboard</string>
-    <string name="add_expense">Add Expense</string>
+    <string name="add_expense">Add</string>
     <string name="history">History</string>
     <string name="categories">Categories</string>
     <string name="reports">Reports</string>
