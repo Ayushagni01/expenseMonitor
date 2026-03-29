@@ -187,7 +187,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Recent Transactions"
+                android:text="@string/recent_transactions"
                 android:textSize="18sp"
                 android:fontFamily="sans-serif-medium"
                 android:textColor="@color/colorOnBackground"
