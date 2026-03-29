@@ -1,40 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Material 3 Tonal Palette -->
-    <color name="colorPrimary">#0060A9</color>
+    <!-- Premium Abstract Theme -->
+    <!-- Primary: Deep Vibrant Indigo/Violet -->
+    <color name="colorPrimary">#5E35B1</color>
     <color name="colorOnPrimary">#FFFFFF</color>
-    <color name="colorPrimaryContainer">#D3E4FF</color>
-    <color name="colorOnPrimaryContainer">#001C38</color>
+    <color name="colorPrimaryContainer">#EDE7F6</color>
+    <color name="colorOnPrimaryContainer">#311B92</color>
 
-    <color name="colorSecondary">#545F71</color>
+    <!-- Secondary: Vivid Coral -->
+    <color name="colorSecondary">#FF6E40</color>
     <color name="colorOnSecondary">#FFFFFF</color>
-    <color name="colorSecondaryContainer">#D8E3F8</color>
-    <color name="colorOnSecondaryContainer">#111C2B</color>
+    <color name="colorSecondaryContainer">#FFCCBC</color>
+    <color name="colorOnSecondaryContainer">#BF360C</color>
 
-    <color name="colorTertiary">#6D5976</color>
+    <!-- Tertiary: Bright Mint -->
+    <color name="colorTertiary">#00BFA5</color>
     <color name="colorOnTertiary">#FFFFFF</color>
-    <color name="colorTertiaryContainer">#F6D9F9</color>
-    <color name="onTertiaryContainer">#26172E</color>
+    <color name="colorTertiaryContainer">#E0F2F1</color>
+    <color name="onTertiaryContainer">#004D40</color>
 
-    <color name="colorError">#BA1A1A</color>
-    <color name="colorOnError">#FFFFFF</color>
-    <color name="colorErrorContainer">#FFDAD6</color>
-    <color name="colorOnErrorContainer">#410002</color>
+    <!-- Surfaces & Neutrals -->
+    <!-- Background is an extremely soft cool violet-white -->
+    <color name="colorBackground">#F6F5FB</color>
+    <color name="colorOnBackground">#1A1A24</color>
+    <color name="colorSurface">#FFFFFF</color>
+    <color name="colorOnSurface">#121220</color>
+    <color name="colorSurfaceVariant">#EAEAFA</color>
+    <color name="colorOnSurfaceVariant">#56567C</color>
+    <color name="colorOutline">#B4B4CC</color>
 
-    <color name="colorBackground">#F8F9FF</color>
-    <color name="colorOnBackground">#191C20</color>
-    <color name="colorSurface">#F8F9FF</color>
-    <color name="colorOnSurface">#191C20</color>
-    <color name="colorSurfaceVariant">#E1E2EC</color>
-    <color name="colorOnSurfaceVariant">#44474E</color>
-    <color name="colorOutline">#74777F</color>
-
-    <!-- Custom Semantic Colors (M3 Tones) -->
-    <color name="colorSuccess">#388E3C</color>
-    <color name="colorWarning">#FBC02D</color>
-    <color name="colorIncome">#006A60</color>
-    <color name="colorExpense">#B3261E</color>
-    <color name="colorBalance">#0060A9</color>
+    <!-- Semantic Financial Colors (Neon touches) -->
+    <color name="colorSuccess">#00E676</color>
+    <color name="colorWarning">#FFD600</color>
+    <!-- Income: Bright Spring Green -->
+    <color name="colorIncome">#00C853</color>
+    <!-- Expense: Neon Watermelon Red -->
+    <color name="colorExpense">#FF1744</color>
+    <color name="colorBalance">#5E35B1</color>
 
     <!-- Chart Colors -->
     <color name="chart1">#0060A9</color>
