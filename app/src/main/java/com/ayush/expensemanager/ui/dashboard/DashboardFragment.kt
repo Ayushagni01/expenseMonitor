@@ -96,7 +96,7 @@ class DashboardFragment : Fragment() {
             updateBalance()
         }
 
-        viewModel.recentExpenses.observe(viewLifecycleOwner) { expenses ->
+        viewModel.monthlyExpenses.observe(viewLifecycleOwner) { expenses ->
             expenseAdapter.submitList(expenses)
             binding.tvNoExpenses.visibility = if (expenses.isEmpty()) View.VISIBLE else View.GONE
         }

@@ -15,17 +15,17 @@ interface ExpenseDao {
     @Delete
     suspend fun deleteExpense(expense: Expense)
 
-    @Query("SELECT * FROM expenses ORDER BY date DESC")
+    @Query("SELECT * FROM expenses ORDER BY date DESC, id DESC")
     fun getAllExpenses(): LiveData<List<Expense>>
 
-    @Query("SELECT * FROM expenses ORDER BY date DESC")
+    @Query("SELECT * FROM expenses ORDER BY date DESC, id DESC")
     suspend fun getAllExpensesSync(): List<Expense>
 
     @Query("""
         SELECT * FROM expenses 
         WHERE strftime('%m', date/1000, 'unixepoch') = :month 
         AND strftime('%Y', date/1000, 'unixepoch') = :year
-        ORDER BY date DESC
+        ORDER BY date DESC, id DESC
     """)
     fun getExpensesForMonth(month: String, year: String): LiveData<List<Expense>>
 
@@ -33,7 +33,7 @@ interface ExpenseDao {
         SELECT * FROM expenses 
         WHERE strftime('%m', date/1000, 'unixepoch') = :month 
         AND strftime('%Y', date/1000, 'unixepoch') = :year
-        ORDER BY date DESC
+        ORDER BY date DESC, id DESC
     """)
     suspend fun getExpensesForMonthSync(month: String, year: String): List<Expense>
 
@@ -64,7 +64,7 @@ interface ExpenseDao {
     @Query("""
         SELECT * FROM expenses 
         WHERE (notes LIKE '%' || :query || '%' OR categoryName LIKE '%' || :query || '%')
-        ORDER BY date DESC
+        ORDER BY date DESC, id DESC
     """)
     fun searchExpenses(query: String): LiveData<List<Expense>>
 
@@ -73,11 +73,11 @@ interface ExpenseDao {
         WHERE categoryId = :categoryId
         AND strftime('%m', date/1000, 'unixepoch') = :month 
         AND strftime('%Y', date/1000, 'unixepoch') = :year
-        ORDER BY date DESC
+        ORDER BY date DESC, id DESC
     """)
     fun getExpensesByCategoryAndMonth(categoryId: Int, month: String, year: String): LiveData<List<Expense>>
 
-    @Query("SELECT * FROM expenses ORDER BY date DESC LIMIT 5")
+    @Query("SELECT * FROM expenses ORDER BY date DESC, id DESC LIMIT 5")
     fun getRecentExpenses(): LiveData<List<Expense>>
 
     @Query("DELETE FROM expenses WHERE id = :expenseId")
