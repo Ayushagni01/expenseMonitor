@@ -28,6 +28,12 @@
     <color name="colorSurfaceVariant">#EAEAFA</color>
     <color name="colorOnSurfaceVariant">#56567C</color>
     <color name="colorOutline">#B4B4CC</color>
+    
+    <!-- Error State Colors required by Theme -->
+    <color name="colorError">#BA1A1A</color>
+    <color name="colorOnError">#FFFFFF</color>
+    <color name="colorErrorContainer">#FFDAD6</color>
+    <color name="colorOnErrorContainer">#410002</color>
 
     <!-- Semantic Financial Colors (Neon touches) -->
     <color name="colorSuccess">#00E676</color>
