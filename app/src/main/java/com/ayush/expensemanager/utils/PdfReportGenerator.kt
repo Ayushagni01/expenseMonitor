@@ -15,6 +15,9 @@ import java.io.FileOutputStream
 import java.text.SimpleDateFormat
 import java.util.*
 
+import android.net.Uri
+import androidx.documentfile.provider.DocumentFile
+
 object PdfReportGenerator {
 
     fun generateMonthlyReport(
@@ -25,8 +28,9 @@ object PdfReportGenerator {
         totalSpent: Double,
         expenses: List<Expense>,
         categoryTotals: List<CategoryTotal>,
-        currencySymbol: String = "₹"
-    ): File? {
+        currencySymbol: String = "₹",
+        customUriStr: String? = null
+    ): Uri? {
         return try {
             val pdfDocument = PdfDocument()
             val pageInfo = PdfDocument.PageInfo.Builder(595, 842, 1).create() // A4 size
@@ -46,15 +50,40 @@ object PdfReportGenerator {
             }
 
             val fileName = "ExpenseReport_${getMonthName(month)}_$year.pdf"
-            val file = File(
-                context.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS),
-                fileName
-            )
+            
+            var outputStream: java.io.OutputStream? = null
+            var finalUri: Uri? = null
 
-            pdfDocument.writeTo(FileOutputStream(file))
+            if (customUriStr != null) {
+                try {
+                    val treeUri = Uri.parse(customUriStr)
+                    val documentFile = DocumentFile.fromTreeUri(context, treeUri)
+                    val newFile = documentFile?.createFile("application/pdf", fileName)
+                    if (newFile != null) {
+                        outputStream = context.contentResolver.openOutputStream(newFile.uri)
+                        finalUri = newFile.uri
+                    }
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
+            }
+
+            if (outputStream == null) {
+                // Fallback to legacy
+                val file = File(context.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS), fileName)
+                outputStream = FileOutputStream(file)
+                finalUri = FileProvider.getUriForFile(
+                    context, 
+                    "${context.packageName}.fileprovider", 
+                    file
+                )
+            }
+
+            pdfDocument.writeTo(outputStream)
             pdfDocument.close()
+            outputStream?.close()
 
-            file
+            finalUri
         } catch (e: Exception) {
             e.printStackTrace()
             null

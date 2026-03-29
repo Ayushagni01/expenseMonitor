@@ -49,6 +49,10 @@ class SettingsFragment : Fragment() {
         uri?.let { handleFolderSelected(it) }
     }
 
+    private val pdfFolderPickerLauncher = registerForActivityResult(ActivityResultContracts.OpenDocumentTree()) { uri ->
+        uri?.let { handlePdfFolderSelected(it) }
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentSettingsBinding.inflate(inflater, container, false)
         return binding.root
@@ -79,6 +83,12 @@ class SettingsFragment : Fragment() {
             binding.tvBackupFolder.text = "Custom Folder Selected"
         }
 
+        // Load PDF folder
+        val pdfUri = prefs.getString("pdf_export_uri", null)
+        if (pdfUri != null) {
+            binding.tvPdfFolder.text = "Custom Folder Selected"
+        }
+
         binding.switchDarkMode.setOnCheckedChangeListener { _, isChecked ->
             prefs.edit().putBoolean("dark_mode", isChecked).apply()
             AppCompatDelegate.setDefaultNightMode(
@@ -92,6 +102,10 @@ class SettingsFragment : Fragment() {
 
         binding.layoutBackupFolder.setOnClickListener {
             folderPickerLauncher.launch(null)
+        }
+
+        binding.layoutPdfFolder.setOnClickListener {
+            pdfFolderPickerLauncher.launch(null)
         }
 
         binding.btnSaveSettings.setOnClickListener {
@@ -228,6 +242,17 @@ class SettingsFragment : Fragment() {
         
         binding.tvBackupFolder.text = "Custom Folder Selected"
         Toast.makeText(requireContext(), "Backup folder updated!", Toast.LENGTH_SHORT).show()
+    }
+
+    private fun handlePdfFolderSelected(uri: Uri) {
+        val flags = Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_WRITE_URI_PERMISSION
+        requireContext().contentResolver.takePersistableUriPermission(uri, flags)
+        
+        val prefs = requireContext().getSharedPreferences("settings", Context.MODE_PRIVATE)
+        prefs.edit().putString("pdf_export_uri", uri.toString()).apply()
+        
+        binding.tvPdfFolder.text = "Custom Folder Selected"
+        Toast.makeText(requireContext(), "PDF Export folder updated!", Toast.LENGTH_SHORT).show()
     }
 
     override fun onDestroyView() {

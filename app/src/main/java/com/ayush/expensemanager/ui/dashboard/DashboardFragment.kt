@@ -63,6 +63,9 @@ class DashboardFragment : Fragment() {
         binding.btnSetSalary.setOnClickListener {
             findNavController().navigate(R.id.action_dashboard_to_setSalary)
         }
+        binding.layoutSeeAll.setOnClickListener {
+            findNavController().navigate(R.id.expenseHistoryFragment)
+        }
     }
 
     private fun observeData() {
@@ -97,8 +100,10 @@ class DashboardFragment : Fragment() {
         }
 
         viewModel.monthlyExpenses.observe(viewLifecycleOwner) { expenses ->
-            expenseAdapter.submitList(expenses)
-            binding.tvNoExpenses.visibility = if (expenses.isEmpty()) View.VISIBLE else View.GONE
+            val displayList = expenses.take(5)
+            expenseAdapter.submitList(displayList)
+            binding.tvNoExpenses.visibility = if (displayList.isEmpty()) View.VISIBLE else View.GONE
+            binding.layoutSeeAll.visibility = if (expenses.size > 5) View.VISIBLE else View.GONE
         }
     }
 

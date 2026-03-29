@@ -64,7 +64,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Automated Backup"
+            android:text="Export &amp; Backup Locations"
             android:textSize="18sp"
             android:textStyle="bold"
             android:textColor="@color/colorOnBackground"
@@ -113,6 +113,47 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/layout_pdf_folder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackground"
+            android:padding="8dp"
+            android:layout_marginBottom="16dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="PDF Report Export Path"
+                    android:textSize="16sp"
+                    android:textColor="@color/colorOnSurface" />
+
+                <TextView
+                    android:id="@+id/tv_pdf_folder"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Default (Downloads)"
+                    android:textSize="14sp"
+                    android:textColor="@color/colorOnSurfaceVariant" />
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@android:drawable/ic_menu_directions"
+                app:tint="@color/colorOnSurfaceVariant" />
+        </LinearLayout>
+
+        <LinearLayout
             android:id="@+id/layout_backup_folder"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -133,7 +174,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Backup Folder Path"
+                    android:text="Data Backup Path (CSV)"
                     android:textSize="16sp"
                     android:textColor="@color/colorOnSurface" />
 
