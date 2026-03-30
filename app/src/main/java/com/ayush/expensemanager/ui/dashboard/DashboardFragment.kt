@@ -12,6 +12,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.ayush.expensemanager.R
 import com.ayush.expensemanager.databinding.FragmentDashboardBinding
 import com.ayush.expensemanager.ui.expense.ExpenseAdapter
+import android.app.Activity
+import android.content.Intent
+import android.speech.RecognizerIntent
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
+import com.ayush.expensemanager.data.entities.Expense
+import com.ayush.expensemanager.viewmodel.ExpenseViewModel
+import java.util.Locale
 import com.ayush.expensemanager.utils.CurrencyFormatter
 import com.ayush.expensemanager.utils.NotificationHelper
 import com.ayush.expensemanager.viewmodel.MainViewModel
@@ -25,6 +33,17 @@ class DashboardFragment : Fragment() {
     private var _binding: FragmentDashboardBinding? = null
     private val binding get() = _binding!!
     private val viewModel: MainViewModel by activityViewModels()
+    private val expenseViewModel: ExpenseViewModel by activityViewModels()
+
+    private val voiceLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            val res = result.data?.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)
+            val spokenText = res?.get(0)
+            if (spokenText != null) {
+                processVoiceCommand(spokenText)
+            }
+        }
+    }
     private lateinit var expenseAdapter: ExpenseAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -57,6 +76,18 @@ class DashboardFragment : Fragment() {
     }
 
     private fun setupClickListeners() {
+        binding.fabVoiceExpense.setOnClickListener {
+            val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH).apply {
+                putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM)
+                putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault())
+                putExtra(RecognizerIntent.EXTRA_PROMPT, "Say something like 'Spent 100 on Food'")
+            }
+            try {
+                voiceLauncher.launch(intent)
+            } catch (e: Exception) {
+                Toast.makeText(requireContext(), "Your device doesn't support Voice Input", Toast.LENGTH_SHORT).show()
+            }
+        }
         binding.fabAddExpense.setOnClickListener {
             findNavController().navigate(R.id.action_dashboard_to_addExpense)
         }
@@ -111,6 +142,48 @@ class DashboardFragment : Fragment() {
         val salary = viewModel.currentSalary.value?.amount ?: 0.0
         val spent = viewModel.totalSpent.value ?: 0.0
         binding.tvBalanceAmount.text = CurrencyFormatter.format(salary - spent)
+    }
+
+    private fun processVoiceCommand(text: String) {
+        val lowerText = text.lowercase()
+        
+        // 1. Extract Amount
+        val amountRegex = Regex("(\\d+(?:\\.\\d+)?)")
+        val amountMatch = amountRegex.find(lowerText)
+        val amount = amountMatch?.value?.toDoubleOrNull()
+        
+        if (amount == null) {
+            Toast.makeText(requireContext(), "Could not detect an amount. Try again.", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        // 2. Extract Category
+        var categoryId: Int? = null
+        var categoryName = "Other"
+        
+        val categories = viewModel.allCategories.value ?: emptyList()
+        val matchedCategory = categories.find { cat -> lowerText.contains(cat.name.lowercase()) }
+        if (matchedCategory != null) {
+            categoryId = matchedCategory.id
+            categoryName = matchedCategory.name
+        }
+
+        // 3. Extract Date
+        val cal = Calendar.getInstance()
+        if (lowerText.contains("yesterday")) {
+            cal.add(Calendar.DAY_OF_YEAR, -1)
+        }
+
+        val expense = Expense(
+            amount = amount,
+            categoryId = categoryId,
+            categoryName = categoryName,
+            date = cal.timeInMillis,
+            notes = "Voice: $text"
+        )
+        
+        expenseViewModel.addExpense(expense)
+        Toast.makeText(requireContext(), "Added ₹${CurrencyFormatter.format(amount)} to $categoryName", Toast.LENGTH_LONG).show()
     }
 
     override fun onDestroyView() {

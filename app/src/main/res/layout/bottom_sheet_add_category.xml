@@ -7,37 +7,51 @@
     android:padding="24dp"
     android:background="@drawable/bottom_sheet_background">
 
+    <!-- Handle -->
+    <View
+        android:layout_width="48dp"
+        android:layout_height="4dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="20dp"
+        android:background="@color/colorOutline" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Category"
-        android:textSize="20sp"
-        android:fontFamily="sans-serif-bold"
+        android:text="New Category ✦"
+        android:textSize="22sp"
+        android:fontFamily="sans-serif-black"
         android:textColor="@color/colorOnSurface"
-        android:layout_marginBottom="24dp" />
+        android:layout_marginBottom="20dp" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/til_category_name"
-        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+        style="@style/Widget.App.TextInput.Glass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Category Name"
-        android:layout_marginBottom="24dp">
+        android:layout_marginBottom="24dp"
+        app:startIconDrawable="@android:drawable/ic_menu_agenda"
+        app:startIconTint="@color/colorPrimary">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_category_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textCapSentences"
+            android:textColor="@android:color/white"
             android:maxLines="1" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/btn_add_category"
-        style="@style/Widget.Material3.Button"
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:text="Create Category"
-        app:cornerRadius="16dp" />
+        android:background="@drawable/btn_rainbow"
+        android:backgroundTint="@null"
+        android:text="✓  Create Category"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        android:textSize="15sp" />
 
 </LinearLayout>

@@ -2,231 +2,395 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_rainbow">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:paddingTop="16dp"
+        android:paddingBottom="32dp">
+
+        <!-- Header -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Settings ⚙️"
+            android:textSize="26sp"
+            android:fontFamily="sans-serif-black"
+            android:textColor="@android:color/white"
+            android:paddingHorizontal="20dp"
+            android:layout_marginBottom="4dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Settings"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            android:textColor="@color/colorOnBackground"
-            android:layout_marginBottom="20dp" />
+            android:text="Customize your experience"
+            android:textSize="13sp"
+            android:textColor="@color/colorOnSurfaceVariant"
+            android:paddingHorizontal="20dp"
+            android:layout_marginBottom="24dp" />
 
-        <LinearLayout
+        <!-- ══ Appearance Card ══ -->
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:layout_marginBottom="16dp">
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginBottom="16dp"
+            app:cardElevation="0dp"
+            app:strokeWidth="1dp"
+            app:strokeColor="@color/colorOutline"
+            app:cardCornerRadius="24dp"
+            app:cardBackgroundColor="@color/colorSurface">
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Dark Mode"
-                android:textSize="16sp" />
-
-            <com.google.android.material.switchmaterial.SwitchMaterial
-                android:id="@+id/switch_dark_mode"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Currency Symbol"
-            android:layout_marginBottom="24dp"
-            style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_currency"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:maxLength="3"
-                android:text="₹" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:orientation="vertical"
+                android:padding="20dp">
 
-        <Button
-            android:id="@+id/btn_save_settings"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="APPEARANCE"
+                    android:textSize="10sp"
+                    android:letterSpacing="0.2"
+                    android:textColor="@color/colorPrimary"
+                    android:fontFamily="sans-serif-medium"
+                    android:layout_marginBottom="16dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Dark Mode"
+                            android:textSize="15sp"
+                            android:textColor="@color/colorOnSurface" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Toggle theme"
+                            android:textSize="12sp"
+                            android:textColor="@color/colorOnSurfaceVariant"
+                            android:layout_marginTop="2dp" />
+                    </LinearLayout>
+
+                    <com.google.android.material.switchmaterial.SwitchMaterial
+                        android:id="@+id/switch_dark_mode"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:thumbTint="@color/colorPrimary"
+                        android:trackTint="@color/colorPrimaryContainer" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/colorOutline"
+                    android:layout_marginVertical="16dp" />
+
+                <!-- Currency Field -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="CURRENCY"
+                    android:textSize="10sp"
+                    android:letterSpacing="0.2"
+                    android:textColor="@color/colorSecondary"
+                    android:fontFamily="sans-serif-medium"
+                    android:layout_marginBottom="12dp" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Currency Symbol"
+                    style="@style/Widget.App.TextInput.Glass">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_currency"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:maxLength="3"
+                        android:text="₹"
+                        android:textColor="@android:color/white" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <Button
+                    android:id="@+id/btn_save_settings"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/btn_rainbow"
+                    android:backgroundTint="@null"
+                    android:text="Save Settings"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- ══ Backup & Export Card ══ -->
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Save Settings"
-            android:layout_marginBottom="32dp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Export &amp; Backup Locations"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="@color/colorOnBackground"
-            android:layout_marginBottom="12dp"
-            android:layout_marginTop="24dp" />
-
-        <LinearLayout
-            android:id="@+id/layout_backup_time"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:clickable="true"
-            android:focusable="true"
-            android:background="?attr/selectableItemBackground"
-            android:padding="8dp"
-            android:layout_marginBottom="16dp">
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginBottom="16dp"
+            app:cardElevation="0dp"
+            app:strokeWidth="1dp"
+            app:strokeColor="@color/colorOutline"
+            app:cardCornerRadius="24dp"
+            app:cardBackgroundColor="@color/colorSurface">
 
             <LinearLayout
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:padding="20dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Daily Backup Time"
-                    android:textSize="16sp"
-                    android:textColor="@color/colorOnSurface" />
+                    android:text="BACKUP &amp; EXPORT"
+                    android:textSize="10sp"
+                    android:letterSpacing="0.2"
+                    android:textColor="@color/colorSecondary"
+                    android:fontFamily="sans-serif-medium"
+                    android:layout_marginBottom="16dp" />
 
-                <TextView
-                    android:id="@+id/tv_backup_time"
-                    android:layout_width="wrap_content"
+                <!-- Daily Backup Time Row -->
+                <LinearLayout
+                    android:id="@+id/layout_backup_time"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="No time set"
-                    android:textSize="14sp"
-                    android:textColor="@color/colorOnSurfaceVariant" />
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="?attr/selectableItemBackground"
+                    android:paddingVertical="12dp">
+
+                    <ImageView
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:padding="6dp"
+                        android:src="@android:drawable/ic_menu_recent_history"
+                        android:background="@drawable/icon_circle_bg"
+                        app:tint="@color/colorPrimary"
+                        android:layout_marginEnd="14dp" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Daily Backup Time"
+                            android:textSize="14sp"
+                            android:textColor="@color/colorOnSurface" />
+
+                        <TextView
+                            android:id="@+id/tv_backup_time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Not set"
+                            android:textSize="12sp"
+                            android:textColor="@color/colorOnSurfaceVariant"
+                            android:layout_marginTop="2dp" />
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:src="@android:drawable/ic_media_next"
+                        app:tint="@color/colorOutline" />
+                </LinearLayout>
+
+                <View android:layout_width="match_parent" android:layout_height="1dp"
+                    android:background="@color/colorOutline" android:layout_marginVertical="4dp" />
+
+                <!-- PDF Folder Row -->
+                <LinearLayout
+                    android:id="@+id/layout_pdf_folder"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="?attr/selectableItemBackground"
+                    android:paddingVertical="12dp">
+
+                    <ImageView
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:padding="6dp"
+                        android:src="@android:drawable/ic_menu_directions"
+                        android:background="@drawable/icon_circle_bg"
+                        app:tint="@color/colorSecondary"
+                        android:layout_marginEnd="14dp" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="PDF Export Path"
+                            android:textSize="14sp"
+                            android:textColor="@color/colorOnSurface" />
+
+                        <TextView
+                            android:id="@+id/tv_pdf_folder"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Default (Downloads)"
+                            android:textSize="12sp"
+                            android:textColor="@color/colorOnSurfaceVariant"
+                            android:layout_marginTop="2dp" />
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:src="@android:drawable/ic_media_next"
+                        app:tint="@color/colorOutline" />
+                </LinearLayout>
+
+                <View android:layout_width="match_parent" android:layout_height="1dp"
+                    android:background="@color/colorOutline" android:layout_marginVertical="4dp" />
+
+                <!-- Backup Folder Row -->
+                <LinearLayout
+                    android:id="@+id/layout_backup_folder"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="?attr/selectableItemBackground"
+                    android:paddingVertical="12dp">
+
+                    <ImageView
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:padding="6dp"
+                        android:src="@android:drawable/ic_menu_share"
+                        android:background="@drawable/icon_circle_bg"
+                        app:tint="@color/colorExpense"
+                        android:layout_marginEnd="14dp" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="CSV Backup Path"
+                            android:textSize="14sp"
+                            android:textColor="@color/colorOnSurface" />
+
+                        <TextView
+                            android:id="@+id/tv_backup_folder"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Default (Documents)"
+                            android:textSize="12sp"
+                            android:textColor="@color/colorOnSurfaceVariant"
+                            android:layout_marginTop="2dp" />
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:src="@android:drawable/ic_media_next"
+                        app:tint="@color/colorOutline" />
+                </LinearLayout>
             </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
 
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@android:drawable/ic_menu_recent_history"
-                app:tint="@color/colorOnSurfaceVariant" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/layout_pdf_folder"
+        <!-- ══ Migration Card ══ -->
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:clickable="true"
-            android:focusable="true"
-            android:background="?attr/selectableItemBackground"
-            android:padding="8dp"
-            android:layout_marginBottom="16dp">
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginBottom="16dp"
+            app:cardElevation="0dp"
+            app:strokeWidth="1dp"
+            app:strokeColor="@color/colorOutline"
+            app:cardCornerRadius="24dp"
+            app:cardBackgroundColor="@color/colorSurface">
 
             <LinearLayout
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:padding="20dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="PDF Report Export Path"
-                    android:textSize="16sp"
-                    android:textColor="@color/colorOnSurface" />
+                    android:text="MIGRATION"
+                    android:textSize="10sp"
+                    android:letterSpacing="0.2"
+                    android:textColor="@color/colorExpense"
+                    android:fontFamily="sans-serif-medium"
+                    android:layout_marginBottom="16dp" />
 
-                <TextView
-                    android:id="@+id/tv_pdf_folder"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Default (Downloads)"
-                    android:textSize="14sp"
-                    android:textColor="@color/colorOnSurfaceVariant" />
+                <Button
+                    android:id="@+id/btn_cloud_backup"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/btn_rainbow"
+                    android:backgroundTint="@null"
+                    android:text="☁️  Backup to Cloud"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/btn_export_csv"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/btn_rainbow_tonal"
+                    android:backgroundTint="@null"
+                    android:text="⬆️  Export to CSV"
+                    android:textColor="@color/colorOnSurface"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/btn_import_csv"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:background="@drawable/btn_rainbow_tonal"
+                    android:backgroundTint="@null"
+                    android:text="⬇️  Import from CSV"
+                    android:textColor="@color/colorOnSurface"
+                    android:textStyle="bold" />
             </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
 
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@android:drawable/ic_menu_directions"
-                app:tint="@color/colorOnSurfaceVariant" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/layout_backup_folder"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:clickable="true"
-            android:focusable="true"
-            android:background="?attr/selectableItemBackground"
-            android:padding="8dp"
-            android:layout_marginBottom="24dp">
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Data Backup Path (CSV)"
-                    android:textSize="16sp"
-                    android:textColor="@color/colorOnSurface" />
-
-                <TextView
-                    android:id="@+id/tv_backup_folder"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Default (Documents)"
-                    android:textSize="14sp"
-                    android:textColor="@color/colorOnSurfaceVariant" />
-            </LinearLayout>
-
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@android:drawable/ic_menu_directions"
-                app:tint="@color/colorOnSurfaceVariant" />
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Manual Migration"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="@color/colorOnBackground"
-            android:layout_marginBottom="12dp" />
-
-        <Button
-            android:id="@+id/btn_cloud_backup"
-            style="@style/Widget.Material3.Button.TonalButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Backup to Cloud (Share)"
-            android:layout_marginBottom="8dp"
-            app:icon="@android:drawable/ic_menu_share" />
-
-        <Button
-            android:id="@+id/btn_export_csv"
-            style="@style/Widget.Material3.Button.OutlinedButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Export Data to CSV"
-            android:layout_marginBottom="8dp"
-            app:icon="@android:drawable/ic_menu_save" />
-
-        <Button
-            android:id="@+id/btn_import_csv"
-            style="@style/Widget.Material3.Button.OutlinedButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Import Data from CSV"
-            app:icon="@android:drawable/ic_menu_upload" />
     </LinearLayout>
 </ScrollView>

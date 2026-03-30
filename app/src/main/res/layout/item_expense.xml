@@ -1,12 +1,14 @@
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="12dp"
-    android:layout_marginHorizontal="4dp"
-    android:layout_marginTop="4dp"
-    app:cardElevation="6dp"
-    app:strokeWidth="0dp"
+    android:layout_marginHorizontal="16dp"
+    android:layout_marginVertical="6dp"
+    app:cardElevation="0dp"
+    app:strokeWidth="1dp"
+    app:strokeColor="@color/colorOutline"
     app:cardCornerRadius="24dp"
     app:cardBackgroundColor="@color/colorSurface">
 
@@ -17,12 +19,13 @@
         android:orientation="horizontal"
         android:padding="16dp">
 
+        <!-- Category Icon Circle -->
         <com.google.android.material.card.MaterialCardView
             android:layout_width="48dp"
             android:layout_height="48dp"
             app:cardCornerRadius="24dp"
             app:cardElevation="0dp"
-            app:cardBackgroundColor="@color/colorSecondaryContainer">
+            app:cardBackgroundColor="@color/colorSurfaceVariant">
 
             <ImageView
                 android:id="@+id/iv_category_icon"
@@ -30,14 +33,15 @@
                 android:layout_height="24dp"
                 android:layout_gravity="center"
                 android:src="@android:drawable/ic_menu_agenda"
-                app:tint="@color/colorOnSecondaryContainer" />
+                app:tint="@color/colorPrimary" />
         </com.google.android.material.card.MaterialCardView>
 
+        <!-- Name, date, notes -->
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="14dp"
             android:orientation="vertical">
 
             <TextView
@@ -45,7 +49,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Shopping"
-                android:textSize="16sp"
+                android:textSize="15sp"
                 android:fontFamily="sans-serif-medium"
                 android:textColor="@color/colorOnSurface" />
 
@@ -53,21 +57,24 @@
                 android:id="@+id/tv_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="28 March, 2026"
-                android:textSize="13sp"
-                android:textColor="@color/colorOnSurfaceVariant" />
+                android:text="28 Mar 2026"
+                android:textSize="12sp"
+                android:textColor="@color/colorOnSurfaceVariant"
+                android:layout_marginTop="2dp" />
 
             <TextView
                 android:id="@+id/tv_notes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="12sp"
+                android:textSize="11sp"
                 android:maxLines="1"
                 android:ellipsize="end"
-                android:textColor="@color/colorOutline"
+                android:textColor="@color/colorSecondary"
+                android:layout_marginTop="2dp"
                 android:visibility="gone" />
         </LinearLayout>
 
+        <!-- Amount + Delete -->
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -79,7 +86,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="₹ 0.00"
-                android:textSize="18sp"
+                android:textSize="17sp"
                 android:fontFamily="sans-serif-black"
                 android:textColor="@color/colorExpense" />
 

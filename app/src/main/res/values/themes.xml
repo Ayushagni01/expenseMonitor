@@ -1,34 +1,87 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
+    <!-- ===== OBSIDIAN INDIGO THEME ===== -->
     <style name="Theme.ExpenseManager" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Main Palette -->
+
+        <!-- Colors -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorOnPrimary">@color/colorOnPrimary</item>
         <item name="colorPrimaryContainer">@color/colorPrimaryContainer</item>
         <item name="colorOnPrimaryContainer">@color/colorOnPrimaryContainer</item>
-
         <item name="colorSecondary">@color/colorSecondary</item>
         <item name="colorOnSecondary">@color/colorOnSecondary</item>
         <item name="colorSecondaryContainer">@color/colorSecondaryContainer</item>
         <item name="colorOnSecondaryContainer">@color/colorOnSecondaryContainer</item>
-
         <item name="colorTertiary">@color/colorTertiary</item>
         <item name="colorOnTertiary">@color/colorOnTertiary</item>
         <item name="colorTertiaryContainer">@color/colorTertiaryContainer</item>
-
         <item name="colorError">@color/colorError</item>
-        <item name="colorOnError">@color/colorOnPrimary</item> <!-- Safe fallback -->
+        <item name="colorOnError">@color/colorOnError</item>
 
-        <item name="android:statusBarColor">@color/colorPrimary</item>
-        <item name="android:navigationBarColor">@color/colorBackground</item>
+        <!-- System Bars -->
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@color/colorSurface</item>
         <item name="android:windowBackground">@color/colorBackground</item>
-
-        <!-- Material 3 Background/Surface -->
         <item name="android:colorBackground">@color/colorBackground</item>
+
+        <!-- Surface -->
         <item name="colorSurface">@color/colorSurface</item>
         <item name="colorOnSurface">@color/colorOnSurface</item>
         <item name="colorSurfaceVariant">@color/colorSurfaceVariant</item>
         <item name="colorOnSurfaceVariant">@color/colorOnSurfaceVariant</item>
         <item name="colorOutline">@color/colorOutline</item>
+
+        <!-- Component Styles -->
+        <item name="materialButtonStyle">@style/Widget.App.Button.Premium</item>
+        <item name="materialButtonOutlinedStyle">@style/Widget.App.Button.Premium.Glass</item>
+        <item name="textInputStyle">@style/Widget.App.TextInput.Glass</item>
+        <item name="bottomNavigationStyle">@style/Widget.App.BottomNav</item>
+
     </style>
+
+    <!-- ===== PREMIUM INDIGO PILL BUTTON ===== -->
+    <style name="Widget.App.Button.Premium" parent="Widget.Material3.Button">
+        <item name="android:background">@drawable/btn_rainbow</item>
+        <item name="backgroundTint">@null</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:letterSpacing">0.03</item>
+        <item name="android:paddingTop">14dp</item>
+        <item name="android:paddingBottom">14dp</item>
+        <item name="cornerRadius">50dp</item>
+        <item name="android:stateListAnimator">@null</item>
+    </style>
+
+    <!-- ===== GLASS OUTLINED BUTTON ===== -->
+    <style name="Widget.App.Button.Premium.Glass" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="android:background">@drawable/btn_rainbow_tonal</item>
+        <item name="backgroundTint">@null</item>
+        <item name="strokeColor">@null</item>
+        <item name="android:textColor">@color/colorOnSurface</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">14sp</item>
+        <item name="cornerRadius">50dp</item>
+        <item name="android:stateListAnimator">@null</item>
+    </style>
+
+    <!-- ===== GLASS TEXT INPUT ===== -->
+    <style name="Widget.App.TextInput.Glass" parent="Widget.Material3.TextInputLayout.OutlinedBox">
+        <item name="boxBackgroundColor">#180D1421</item>
+        <item name="boxStrokeColor">@color/colorOutline</item>
+        <item name="boxStrokeWidth">1dp</item>
+        <item name="hintTextColor">@color/colorOnSurfaceVariant</item>
+        <item name="android:textColorHint">@color/colorOnSurfaceVariant</item>
+        <item name="boxCornerRadiusTopStart">16dp</item>
+        <item name="boxCornerRadiusTopEnd">16dp</item>
+        <item name="boxCornerRadiusBottomStart">16dp</item>
+        <item name="boxCornerRadiusBottomEnd">16dp</item>
+    </style>
+
+    <!-- ===== BOTTOM NAVIGATION ===== -->
+    <style name="Widget.App.BottomNav" parent="Widget.Material3.BottomNavigationView">
+        <item name="android:background">@color/colorSurface</item>
+        <item name="itemIconTint">@color/colorOnSurfaceVariant</item>
+        <item name="itemTextColor">@color/colorOnSurfaceVariant</item>
+    </style>
+
 </resources>

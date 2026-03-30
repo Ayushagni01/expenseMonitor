@@ -1,56 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Premium Abstract Theme -->
-    <!-- Primary: Deep Vibrant Indigo/Violet -->
-    <color name="colorPrimary">#5E35B1</color>
+    <!-- ===== OBSIDIAN INDIGO — Premium Dark Palette ===== -->
+
+    <!-- Primary: Rich Violet -->
+    <color name="colorPrimary">#7C3AED</color>
     <color name="colorOnPrimary">#FFFFFF</color>
-    <color name="colorPrimaryContainer">#EDE7F6</color>
-    <color name="colorOnPrimaryContainer">#311B92</color>
+    <color name="colorPrimaryContainer">#1E0F5E</color>
+    <color name="colorOnPrimaryContainer">#DDD6FE</color>
 
-    <!-- Secondary: Vivid Coral -->
-    <color name="colorSecondary">#FF6E40</color>
+    <!-- Secondary: Sky Blue (professional, financial) -->
+    <color name="colorSecondary">#0EA5E9</color>
     <color name="colorOnSecondary">#FFFFFF</color>
-    <color name="colorSecondaryContainer">#FFCCBC</color>
-    <color name="colorOnSecondaryContainer">#BF360C</color>
+    <color name="colorSecondaryContainer">#082840</color>
+    <color name="colorOnSecondaryContainer">#BAE6FD</color>
 
-    <!-- Tertiary: Bright Mint -->
-    <color name="colorTertiary">#00BFA5</color>
+    <!-- Tertiary: Soft Violet -->
+    <color name="colorTertiary">#A78BFA</color>
     <color name="colorOnTertiary">#FFFFFF</color>
-    <color name="colorTertiaryContainer">#E0F2F1</color>
-    <color name="onTertiaryContainer">#004D40</color>
+    <color name="colorTertiaryContainer">#13113A</color>
+    <color name="colorOnTertiaryContainer">#C4B5FD</color>
 
-    <!-- Surfaces & Neutrals -->
-    <!-- Background is an extremely soft cool violet-white -->
-    <color name="colorBackground">#F6F5FB</color>
-    <color name="colorOnBackground">#1A1A24</color>
-    <color name="colorSurface">#FFFFFF</color>
-    <color name="colorOnSurface">#121220</color>
-    <color name="colorSurfaceVariant">#EAEAFA</color>
-    <color name="colorOnSurfaceVariant">#56567C</color>
-    <color name="colorOutline">#B4B4CC</color>
-    
-    <!-- Error State Colors required by Theme -->
-    <color name="colorError">#BA1A1A</color>
+    <!-- Background: Near-Black Navy -->
+    <color name="colorBackground">#06091A</color>
+    <color name="colorOnBackground">#E8EFF8</color>
+
+    <!-- Surfaces: Dark Navy Glass -->
+    <color name="colorSurface">#0D1421</color>
+    <color name="colorOnSurface">#D0DBE9</color>
+    <color name="colorSurfaceVariant">#131D30</color>
+    <color name="colorOnSurfaceVariant">#6B7FA3</color>
+    <color name="colorOutline">#1A2844</color>
+
+    <!-- Error -->
+    <color name="colorError">#F87171</color>
     <color name="colorOnError">#FFFFFF</color>
-    <color name="colorErrorContainer">#FFDAD6</color>
-    <color name="colorOnErrorContainer">#410002</color>
+    <color name="colorErrorContainer">#4A1C1C</color>
+    <color name="colorOnErrorContainer">#FECACA</color>
 
-    <!-- Semantic Financial Colors (Neon touches) -->
-    <color name="colorSuccess">#00E676</color>
-    <color name="colorWarning">#FFD600</color>
-    <!-- Income: Bright Spring Green -->
-    <color name="colorIncome">#00C853</color>
-    <!-- Expense: Neon Watermelon Red -->
-    <color name="colorExpense">#FF1744</color>
-    <color name="colorBalance">#5E35B1</color>
+    <!-- Semantic Financial -->
+    <color name="colorSuccess">#34D399</color>
+    <color name="colorWarning">#FBBF24</color>
+    <color name="colorIncome">#34D399</color>
+    <color name="colorExpense">#F87171</color>
+    <color name="colorBalance">#A78BFA</color>
 
-    <!-- Chart Colors -->
-    <color name="chart1">#0060A9</color>
-    <color name="chart2">#6D5976</color>
-    <color name="chart3">#545F71</color>
-    <color name="chart4">#388E3C</color>
-    <color name="chart5">#FBC02D</color>
-    <color name="chart6">#BA1A1A</color>
-    <color name="chart7">#006A60</color>
-    <color name="chart8">#44474E</color>
+    <!-- Chart Colors: Premium Curated -->
+    <color name="chart1">#7C3AED</color>
+    <color name="chart2">#0EA5E9</color>
+    <color name="chart3">#34D399</color>
+    <color name="chart4">#FBBF24</color>
+    <color name="chart5">#F87171</color>
+    <color name="chart6">#A78BFA</color>
+    <color name="chart7">#06B6D4</color>
+    <color name="chart8">#8B5CF6</color>
 </resources>

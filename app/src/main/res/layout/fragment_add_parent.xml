@@ -3,16 +3,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/bg_rainbow">
 
+    <!-- Gen Z Tab Layout -->
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tab_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/colorSurface"
         app:tabMode="fixed"
         app:tabGravity="fill"
-        app:tabIndicatorColor="?attr/colorPrimary"
-        app:tabSelectedTextColor="?attr/colorPrimary" />
+        app:tabIndicatorColor="@color/colorSecondary"
+        app:tabIndicatorHeight="3dp"
+        app:tabSelectedTextColor="@color/colorPrimary"
+        app:tabTextColor="@color/colorOnSurfaceVariant"
+        app:tabRippleColor="@color/colorPrimaryContainer" />
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/view_pager"

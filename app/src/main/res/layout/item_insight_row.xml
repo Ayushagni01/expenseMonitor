@@ -4,29 +4,38 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:paddingVertical="12dp"
+    android:paddingHorizontal="4dp"
     android:gravity="center_vertical">
 
+    <!-- Category Name -->
     <TextView
         android:id="@+id/tv_category_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:textSize="16sp"
-        android:textColor="@color/colorOnSurface" />
+        android:textSize="15sp"
+        android:textColor="@color/colorOnSurface"
+        android:fontFamily="sans-serif-medium" />
 
+    <!-- Percent Badge -->
     <TextView
         android:id="@+id/tv_percent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:textSize="14sp"
-        android:textColor="@color/colorSecondary" />
+        android:layout_marginEnd="12dp"
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="3dp"
+        android:textSize="12sp"
+        android:fontFamily="sans-serif-bold"
+        android:textColor="@android:color/white"
+        android:background="@drawable/btn_rainbow_tonal" />
 
+    <!-- Amount -->
     <TextView
         android:id="@+id/tv_amount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:fontFamily="sans-serif-bold"
-        android:textColor="@color/colorOnSurface" />
+        android:textSize="15sp"
+        android:fontFamily="sans-serif-black"
+        android:textColor="@color/colorExpense" />
 </LinearLayout>
