@@ -59,25 +59,34 @@ class ExpenseHistoryFragment : Fragment() {
 
     private fun setupMonthFilter() {
         val cal = Calendar.getInstance()
-        val months = (1..12).map { month ->
+        // "All Time" as first entry so imported data from any month is visible
+        val allOption = "All Time"
+        val months = listOf(allOption) + (1..12).map { month ->
             val c = Calendar.getInstance().apply { set(Calendar.MONTH, month - 1) }
             java.text.SimpleDateFormat("MMMM", java.util.Locale.getDefault()).format(c.time)
         }
         val monthAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, months)
         binding.spinnerMonth.setAdapter(monthAdapter)
-        binding.spinnerMonth.setText(months[cal.get(Calendar.MONTH)], false)
+        // Default: show all
+        binding.spinnerMonth.setText(allOption, false)
 
         binding.spinnerMonth.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
-            val month = String.format("%02d", position + 1)
-            val year = cal.get(Calendar.YEAR).toString()
-            viewModel.getExpensesForMonth(month, year).observe(viewLifecycleOwner) { expenses ->
-                expenseAdapter.submitList(expenses)
-                binding.tvEmpty.visibility = if (expenses.isEmpty()) View.VISIBLE else View.GONE
+            if (position == 0) {
+                // "All Time" — show everything
+                viewModel.searchExpenses("")
+            } else {
+                val month = String.format("%02d", position) // position 1 = January = month 01
+                val year = cal.get(Calendar.YEAR).toString()
+                viewModel.getExpensesForMonth(month, year).observe(viewLifecycleOwner) { expenses ->
+                    expenseAdapter.submitList(expenses)
+                    binding.tvEmpty.visibility = if (expenses.isEmpty()) View.VISIBLE else View.GONE
+                }
             }
         }
     }
 
     private fun observeData() {
+        // On initial load shows ALL expenses (searchResults with blank query = all expenses)
         viewModel.searchResults.observe(viewLifecycleOwner) { expenses ->
             expenseAdapter.submitList(expenses)
             binding.tvEmpty.visibility = if (expenses.isEmpty()) View.VISIBLE else View.GONE

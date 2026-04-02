@@ -21,13 +21,14 @@ class BackupWorker(
     override suspend fun doWork(): Result {
         return try {
             val db = AppDatabase.getDatabase(applicationContext)
-            val repository = ExpenseRepository(db.salaryDao(), db.categoryDao(), db.expenseDao())
+            val repository = ExpenseRepository(db.salaryDao(), db.categoryDao(), db.expenseDao(), db.emergencyFundDao())
 
             val expenses = repository.getAllExpensesSync()
             val categories = repository.getAllCategoriesSync()
             val salaries = repository.getAllSalariesSync()
+            val emergencyFunds = repository.getAllEmergencyFundTransactionsSync()
 
-            val csvData = DataBackupUtils.exportToCsv(expenses, categories, salaries)
+            val csvData = DataBackupUtils.exportToCsv(expenses, categories, salaries, emergencyFunds)
 
             val prefs = applicationContext.getSharedPreferences("settings", Context.MODE_PRIVATE)
             val backupUriStr = prefs.getString("backup_uri", null)

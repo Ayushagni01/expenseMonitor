@@ -14,6 +14,9 @@
         <action
             android:id="@+id/action_dashboard_to_addExpense"
             app:destination="@id/addExpenseFragment" />
+        <action
+            android:id="@+id/action_dashboard_to_emergencyFund"
+            app:destination="@id/emergencyFundFragment" />
     </fragment>
 
     <fragment
@@ -54,5 +57,19 @@
         android:id="@+id/settingsFragment"
         android:name="com.ayush.expensemanager.ui.settings.SettingsFragment"
         android:label="Settings" />
+
+    <fragment
+        android:id="@+id/emergencyFundFragment"
+        android:name="com.ayush.expensemanager.ui.expense.EmergencyFundFragment"
+        android:label="Emergency Vault">
+        <action
+            android:id="@+id/action_emergencyFund_to_addEmergencyFund"
+            app:destination="@id/addEmergencyFundBottomSheet" />
+    </fragment>
+
+    <dialog
+        android:id="@+id/addEmergencyFundBottomSheet"
+        android:name="com.ayush.expensemanager.ui.expense.AddEmergencyFundBottomSheet"
+        android:label="Add Transaction" />
 
 </navigation>

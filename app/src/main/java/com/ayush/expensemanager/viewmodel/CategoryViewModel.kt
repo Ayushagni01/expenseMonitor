@@ -14,7 +14,7 @@ class CategoryViewModel(application: Application) : AndroidViewModel(application
 
     init {
         val db = AppDatabase.getDatabase(application)
-        repository = ExpenseRepository(db.salaryDao(), db.categoryDao(), db.expenseDao())
+        repository = ExpenseRepository(db.salaryDao(), db.categoryDao(), db.expenseDao(), db.emergencyFundDao())
         allCategories = repository.getAllCategories()
     }
 

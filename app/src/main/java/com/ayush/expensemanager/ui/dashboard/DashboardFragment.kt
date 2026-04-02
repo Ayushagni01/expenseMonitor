@@ -97,6 +97,9 @@ class DashboardFragment : Fragment() {
         binding.layoutSeeAll.setOnClickListener {
             requireActivity().findViewById<com.google.android.material.bottomnavigation.BottomNavigationView>(R.id.bottom_navigation)?.selectedItemId = R.id.expenseHistoryFragment
         }
+        view?.findViewById<View>(R.id.card_emergency_fund)?.setOnClickListener {
+            findNavController().navigate(R.id.action_dashboard_to_emergencyFund)
+        }
     }
 
     private fun observeData() {

@@ -37,7 +37,7 @@ class SettingsFragment : Fragment() {
 
     private lateinit var repository: ExpenseRepository
 
-    private val exportLauncher = registerForActivityResult(ActivityResultContracts.CreateDocument("text/csv")) { uri ->
+    private val exportLauncher = registerForActivityResult(ActivityResultContracts.CreateDocument("*/*")) { uri ->
         uri?.let { saveCsvToUri(it) }
     }
 
@@ -62,7 +62,7 @@ class SettingsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val db = AppDatabase.getDatabase(requireContext())
-        repository = ExpenseRepository(db.salaryDao(), db.categoryDao(), db.expenseDao())
+        repository = ExpenseRepository(db.salaryDao(), db.categoryDao(), db.expenseDao(), db.emergencyFundDao())
 
         val prefs = requireContext().getSharedPreferences("settings", Context.MODE_PRIVATE)
         val isDarkMode = prefs.getBoolean("dark_mode", false)
@@ -123,7 +123,7 @@ class SettingsFragment : Fragment() {
         }
 
         binding.btnImportCsv.setOnClickListener {
-            importLauncher.launch("text/comma-separated-values")
+            importLauncher.launch("*/*")
         }
     }
 
@@ -133,11 +133,12 @@ class SettingsFragment : Fragment() {
                 val expenses = repository.getAllExpensesSync()
                 val categories = repository.getAllCategoriesSync()
                 val salaries = repository.getAllSalariesSync()
+                val emergencyFunds = repository.getAllEmergencyFundTransactionsSync()
                 
-                val csvData = DataBackupUtils.exportToCsv(expenses, categories, salaries)
+                val csvData = DataBackupUtils.exportToCsv(expenses, categories, salaries, emergencyFunds)
                 
                 requireContext().contentResolver.openOutputStream(uri)?.use { outputStream ->
-                    outputStream.write(csvData.toByteArray())
+                    outputStream.write(csvData.toByteArray(Charsets.UTF_8))
                 }
                 Toast.makeText(requireContext(), "Data exported successfully!", Toast.LENGTH_SHORT).show()
             } catch (e: Exception) {
@@ -149,8 +150,36 @@ class SettingsFragment : Fragment() {
     private fun loadCsvFromUri(uri: Uri) {
         viewLifecycleOwner.lifecycleScope.launch {
             try {
-                DataBackupUtils.importFromCsv(requireContext(), uri, repository)
-                Toast.makeText(requireContext(), "Data imported successfully!", Toast.LENGTH_SHORT).show()
+                val result = DataBackupUtils.importFromCsv(requireContext(), uri, repository)
+                val total = result.expensesImported + result.categoriesImported + result.salariesImported + result.emergencyFundsImported
+
+                if (total == 0) {
+                    val errorHint = if (result.errors.isNotEmpty())
+                        "\nError: ${result.errors.first()}"
+                    else
+                        "\nNo valid data rows found in the file."
+                    Toast.makeText(
+                        requireContext(),
+                        "Import finished but 0 records were loaded.$errorHint",
+                        Toast.LENGTH_LONG
+                    ).show()
+                } else {
+                    val msg = buildString {
+                        append("✅ Imported successfully!\n")
+                        if (result.expensesImported > 0)  append("• ${result.expensesImported} expenses\n")
+                        if (result.categoriesImported > 0) append("• ${result.categoriesImported} categories\n")
+                        if (result.salariesImported > 0)  append("• ${result.salariesImported} salaries\n")
+                        if (result.emergencyFundsImported > 0) append("• ${result.emergencyFundsImported} emergency funds\n")
+                        append("Showing in Expense History →")
+                    }
+                    Toast.makeText(requireContext(), msg, Toast.LENGTH_LONG).show()
+
+                    // Navigate to Expense History so user can see ALL imported data
+                    // (Dashboard only shows current month — old expenses would be invisible there)
+                    activity?.findViewById<com.google.android.material.bottomnavigation.BottomNavigationView>(
+                        com.ayush.expensemanager.R.id.bottom_navigation
+                    )?.selectedItemId = com.ayush.expensemanager.R.id.expenseHistoryFragment
+                }
             } catch (e: Exception) {
                 Toast.makeText(requireContext(), "Import failed: ${e.message}", Toast.LENGTH_LONG).show()
             }
@@ -163,8 +192,9 @@ class SettingsFragment : Fragment() {
                 val expenses = repository.getAllExpensesSync()
                 val categories = repository.getAllCategoriesSync()
                 val salaries = repository.getAllSalariesSync()
+                val emergencyFunds = repository.getAllEmergencyFundTransactionsSync()
                 
-                val csvData = DataBackupUtils.exportToCsv(expenses, categories, salaries)
+                val csvData = DataBackupUtils.exportToCsv(expenses, categories, salaries, emergencyFunds)
                 
                 val cacheFile = File(requireContext().cacheDir, "expense_backup.csv")
                 cacheFile.writeText(csvData)

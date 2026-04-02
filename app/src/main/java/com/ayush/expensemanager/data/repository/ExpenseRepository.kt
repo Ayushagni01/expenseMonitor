@@ -12,7 +12,8 @@ import com.ayush.expensemanager.data.entities.Salary
 class ExpenseRepository(
     private val salaryDao: SalaryDao,
     private val categoryDao: CategoryDao,
-    private val expenseDao: ExpenseDao
+    private val expenseDao: ExpenseDao,
+    private val emergencyFundDao: com.ayush.expensemanager.data.dao.EmergencyFundDao
 ) {
     // Salary
     fun getSalaryForMonth(month: Int, year: Int): LiveData<Salary?> =
@@ -68,4 +69,20 @@ class ExpenseRepository(
     suspend fun updateExpense(expense: Expense) = expenseDao.updateExpense(expense)
 
     suspend fun deleteExpense(expense: Expense) = expenseDao.deleteExpense(expense)
+
+    // Emergency Fund
+    suspend fun insertEmergencyFundTransaction(transaction: com.ayush.expensemanager.data.entities.EmergencyFundTransaction): Long = 
+        emergencyFundDao.insertTransaction(transaction)
+
+    suspend fun deleteEmergencyFundTransaction(transaction: com.ayush.expensemanager.data.entities.EmergencyFundTransaction) = 
+        emergencyFundDao.deleteTransaction(transaction)
+
+    fun getAllEmergencyFundTransactions(): LiveData<List<com.ayush.expensemanager.data.entities.EmergencyFundTransaction>> = 
+        emergencyFundDao.getAllTransactions()
+
+    suspend fun getAllEmergencyFundTransactionsSync(): List<com.ayush.expensemanager.data.entities.EmergencyFundTransaction> = 
+        emergencyFundDao.getAllTransactionsSync()
+
+    fun getEmergencyFundBalance(): LiveData<Double> = 
+        emergencyFundDao.getTotalBalance()
 }
